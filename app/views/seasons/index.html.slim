@@ -1,0 +1,13 @@
+#seasons
+  table
+    tr
+      th Name
+      th Rounds
+      th Players
+    - @seasons.each do |season|
+      td = link_to season.name, season_path(season)
+      td = pluralize season.rounds.size, 'round'
+      td = pluralize season.registrations.size, 'player'
+  = simple_form_for @season do |f|
+    = f.input :name
+    = f.button :submit, 'Create Season'

@@ -1,0 +1,16 @@
+.round id=dom_id(@round)
+  h1 = @round.season
+  h2 = @round
+  table.players
+    - @season.each_group do |group, number|
+      tr
+        th colspan="3" Group #{number}
+      tr
+        th Player
+        th Wins
+        th Losses
+      - group.each do |registration|
+        tr
+          td = registration
+          td = registration.wins
+          td = registration.losses

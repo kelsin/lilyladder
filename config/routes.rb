@@ -1,5 +1,13 @@
 Lilyladder::Application.routes.draw do
+  resource :account
   resource :session
+
+  resources :seasons do
+    resources :registrations
+    resources :rounds do
+      resources :matches
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
