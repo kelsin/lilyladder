@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Race do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @race = Race.make_unsaved }
+  subject { @race }
+
+  its(:to_s) { should eq(@race.name) }
 end
