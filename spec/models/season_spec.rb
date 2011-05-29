@@ -35,4 +35,12 @@ describe Season do
     its(:number_of_groups) { should eq(2) }
     its(:group_size) { should eq(37) }
   end
+
+  context "with two seasons" do
+    before { @other_season = Season.make_unsaved }
+
+    it "should sort correctly" do
+      @season.<=>(@other_season).should == @season.name.<=>(@other_season.name)
+    end
+  end
 end

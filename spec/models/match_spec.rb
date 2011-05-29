@@ -11,5 +11,13 @@ describe Match do
       @player3 = Player.make_unsaved(:match => @match2, :registration => @match1.winner)
       @player4 = Player.make_unsaved(:match => @match2, :registration => @match2.winner)
     end
+
+    subject { @match1 }
+
+    its(:to_s) { should eq("#{@player1.name} vs @{@player2.name}") }
+
+    it "should sort correctly" do
+      @match1.<=>(@match2).should == @match1.round.<=>(@match2.round)
+    end
   end
 end

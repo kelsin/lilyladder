@@ -3,6 +3,7 @@ class CreateRegistrations < ActiveRecord::Migration
     create_table :registrations do |t|
       t.references :season
       t.references :user
+      t.references :race
       t.timestamps
     end
   end

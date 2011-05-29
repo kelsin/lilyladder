@@ -3,6 +3,7 @@ class CreateMatches < ActiveRecord::Migration
     create_table :matches do |t|
       t.references :round
       t.references :winner
+      t.integer :group
       t.time :reported_at
       t.timestamps
     end

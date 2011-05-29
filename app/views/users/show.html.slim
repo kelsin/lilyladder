@@ -1,0 +1,37 @@
+.user id=dom_id(@user)
+  h1 = @user
+  h2 Open Matches
+  ul
+    - if @user.open_matches.empty?
+      li None
+    - else
+      - @user.open_matches.each do |match|
+        li = link_to match, [match.round.season, match.round, match]
+  h2 Overall Record
+  dl
+    dt Wins
+    dd #{@user.wins} - #{number_to_percentage @user.win_percent, :precision => 2}
+    dt Losses
+    dd = @user.losses
+    dt Byes
+    dd = @user.byes
+  h2 All Matches
+  ol
+    - @user.registrations.each do |registration|
+      li
+        = link_to registration.season, registration.season
+        - unless registration.matches.empty?
+          table.matches
+            tr
+              th Round
+              th Opponent
+              th Group
+              th Result
+            - registration.matches.sort.each do |match|
+              tr
+                td = match.round.position
+                td = opponent(match, registration)
+                td = match.group
+                td = result(match, registration)
+
+

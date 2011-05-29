@@ -1,22 +1,40 @@
 .season id=dom_id(@season)
   h1 = @season.name
-  h2 = pluralize @season.rounds.size, 'round'
-  table.players
+  h2 Rounds
+  table.rounds
     tr
-      th Player
-      th Wins
-      th Losses
-    - @season.registrations.each do |registration|
-      tr
-        td = registration
-        td = registration.wins
-        td = registration.losses
-  - if User.count > 0
-    = simple_form_for [@season, @season.registrations.build] do |f|
-      = f.input :user_id, :collection => User.all, :label_method => :name, :value_method => :id
-      = f.button :submit, 'Register User'
-  ul.rounds
+      th Round
+      th Starts
+      th Ends
     - @season.rounds.each do |round|
-      li = link_to "Round #{round.position}", season_round_path(@season, round)
-  = simple_form_for [@season, @season.rounds.build] do |f|
-    = f.button :submit, 'Create Round'
+      tr
+        td = link_to round, [@season, round]
+        td = l round.starts_at
+        td = l round.ends_at
+  h2 Current Groups
+  table.players
+    - @season.each_group do |group, number|
+      tr
+        th colspan="43" Group #{number}
+      tr
+        th
+        th Player
+        th Wins
+        th Losses
+        th Byes
+      - group.each_with_index do |registration, index|
+        tr
+          td = index + 1
+          td = link_to registration, registration.user
+          td = registration.wins
+          td = registration.losses
+          td = registration.byes
+  - if admin?
+    - unless @season.eligible_users.empty?
+      h2 Register User
+      = simple_form_for [@season, @season.registrations.build] do |f|
+        = f.input :user_id, :collection => @seaon.eligible_users, :label_method => :name, :value_method => :id, :include_blank => false
+        = f.button :submit, 'Register User'
+    h2 Add Round
+    = simple_form_for [@season, @season.rounds.build] do |f|
+      = f.button :submit, "Create Round #{@season.rounds[-2].position + 1}"

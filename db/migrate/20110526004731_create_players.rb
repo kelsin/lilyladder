@@ -3,7 +3,6 @@ class CreatePlayers < ActiveRecord::Migration
     create_table :players do |t|
       t.references :match
       t.references :registration
-      t.references :race
       t.timestamps
     end
   end

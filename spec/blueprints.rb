@@ -5,15 +5,15 @@ Sham.define do
   name { Faker::Lorem.words(3).join(' ') }
   member_name { Faker::Internet.user_name }
   passwd { Faker::Lorem.words(1) }
+  position { |n| n }
+  starts_at { |n| Time.now + n.days }
+  ends_at { |n| Time.now + 1.week + n.days }
+  race { Race.all.shuffle.first }
 end
 
 Member.blueprint do
   member_name
   passwd
-end
-
-Race.blueprint do
-  name
 end
 
 User.blueprint do
@@ -31,6 +31,9 @@ Registration.blueprint do
 end
 
 Round.blueprint do
+  position
+  starts_at
+  ends_at
   season
 end
 

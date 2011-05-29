@@ -14,4 +14,5 @@ group :development, :test do
   gem 'webrat'
   gem 'faker'
   gem 'machinist', :require => 'machinist/active_record'
+  gem 'capistrano'
 end
