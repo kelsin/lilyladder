@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Round do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "with a position of 2" do
+    before { @round = Round.make_unsaved(:position => 2) }
+    subject { @round }
+
+    its(:to_s) { should eq("Round #{@round.position}") }
+  end
 end

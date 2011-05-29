@@ -11,13 +11,22 @@ class Season < ActiveRecord::Base
     self.registrations.sort
   end
 
-  def each_group
-    data = []
-    self.players.reverse.each_slice(30) do |group|
-      data << group.reverse
+  def number_of_groups
+    [1, self.registrations.size / 25].max
+  end
+
+  def group_size
+    if number_of_groups <= 1
+      self.registrations.size
+    else
+      self.registrations.size / self.number_of_groups
     end
-    data.reverse.each_with_index do |group, index|
-      yield group, index + 1
+  end
+
+  def each_group
+    index = 0
+    self.players.each_slice(group_size) do |group|
+      yield group, index += 1
     end
   end
 end

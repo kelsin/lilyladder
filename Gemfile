@@ -12,4 +12,6 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails'
   gem 'webrat'
+  gem 'faker'
+  gem 'machinist', :require => 'machinist/active_record'
 end
