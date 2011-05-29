@@ -2,9 +2,9 @@ class Match < ActiveRecord::Base
   belongs_to :round
   belongs_to :winner, :class_name => 'Registration'
   has_many :players, :dependent => :destroy
-  scope :win, ->(player) { where(:winner_id => player) }
-  scope :loss, ->(player) { where('winner_id is not null and winner_id != ? and id in (?)', player, player.matches.map(&:id)) }
-  scope :in_round, ->(round_numbers) { includes(:round).where('rounds.position' => round_numbers) }
+  scope :win, lambda { |player| where(:winner_id => player) }
+  scope :loss, lambda { |player| where('winner_id is not null and winner_id != ? and id in (?)', player, player.matches.map(&:id)) }
+  scope :in_round, lambda { |round_numbers| includes(:round).where('rounds.position' => round_numbers) }
   scope :open, where(:reported_at => nil)
   scope :finished, where('reported_at != ?', nil)
 
