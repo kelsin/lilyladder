@@ -52,6 +52,6 @@ class Registration < ActiveRecord::Base
   end
 
   def <=>(other)
-    [other.wins, self.losses, self.user.name] <=> [self.wins, other.losses, other.user.name]
+    [other.wins, self.losses, other.byes, self.user.name] <=> [self.wins, other.losses, self.byes, other.user.name]
   end
 end
