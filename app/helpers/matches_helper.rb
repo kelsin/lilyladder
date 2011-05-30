@@ -49,7 +49,7 @@ module MatchesHelper
 
   def game_result(game)
     if game.winner
-      link_to game.winner, game.winner.user
+      link_to player(game.winner), game.winner.user
     else
       '<span class="not_played_yet">Not Played Yet</span>'.html_safe
     end
