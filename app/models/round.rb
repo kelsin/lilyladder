@@ -30,6 +30,21 @@ class Round < ActiveRecord::Base
   end
   memoize :registrations_with_matches
 
+  def all_groups
+    groups = []
+
+    self.season.each_group do |group, index|
+      groups << (group - self.registrations_with_matches)
+    end
+
+    return groups
+  end
+
+  def zipped_groups
+    groups = all_groups
+    groups.shift.zip(*groups)
+  end
+
   # Generates matches for all players that don't have any
   def generate_matches
     # Go through each group one at a time

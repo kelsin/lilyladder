@@ -31,9 +31,12 @@
         = f.button :submit, 'Generate Matches'
       h3 Current players without matches
       table.players
-        - @season.each_group do |group, index|
-          tr.group
-            th Group #{index}
-          - (group - @round.registrations_with_matches).each do |registration|
-            tr
-              td = link_to player(registration), registration.user
+        tr.group
+          th
+          - @season.number_of_groups.times do |n|
+            th Group #{n + 1}
+        - @round.zipped_groups.each_with_index do |row, index|
+          tr
+            td = index + 1
+            - row.each do |registration|
+              td = (link_to player(registration), registration.user) if registration
