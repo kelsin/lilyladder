@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   def create
     @season = Season.find(params[:season_id])
     @round = @season.rounds.find(params[:round_id])
-    @match = @round.matches.find(params[:id])
+    @match = @round.matches.find(params[:match_id])
     @game = @match.games.build(params[:game])
 
     if @game.save
