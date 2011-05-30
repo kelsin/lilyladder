@@ -13,20 +13,18 @@ dt { clear: left; }
 p { background-color: #222; padding: 6px 24px 6px 6px; }
 
 /* Headers */
-h1 { font-size: 3em; font-weight: bold; }
+h1 { font-size: 3em; font-weight: bold; padding: 6px 24px 6px 6px; }
+h2 { font-size: 2em; padding: 6px 24px 6px 6px; }
+h3 { font-size: 1.8em; font-weight: bold; border-bottom: 1px solid #a00; padding: 16px 24px 6px 6px; }
 
 .user h1 { font-size: 2.6em; font-weight: normal; }
 
 .season h1 { font-size: 2.6em; font-weight: normal; }
 
 .round h1 { font-size: 2.6em; font-weight: normal; }
-.round h2 { font-size: 2em; }
 
 .match h1 { font-size: 2.6em; font-weight: normal; }
-.match h2 { font-size: 2em; }
 .match h3 { background-color: #222; margin: 1em 0 0 0; padding-top: 6px; }
-
-h3 { font-size: 1.8em; font-weight: bold; border-bottom: 1px solid #a00; padding: 16px 24px 6px 6px; }
 
 /* Content Sections */
 #content { background-color: #444; width: 936px; margin: 0 auto; padding: 32px; }
