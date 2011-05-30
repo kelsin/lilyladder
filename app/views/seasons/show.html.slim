@@ -37,4 +37,4 @@
         = f.button :submit, 'Register User'
     h2 Add Round
     = simple_form_for [@season, @season.rounds.build] do |f|
-      = f.button :submit, "Create Round #{@season.rounds[-2].position + 1}"
+      = f.button :submit, "Create Round #{(@season.rounds[-2].try(:position) || 0) + 1}"
