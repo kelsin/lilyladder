@@ -25,13 +25,15 @@
               td = link_to 'Match Page', [@season, @round, match]
   - if admin?
     - unless @round.players_without_matches.empty?
-      h2 Generate Matches
+      h3 Generate Matches
       p This button will generate matches for all current registrations in this round that don't have one (listed below).
       = simple_form_for [@season, @round, @round.matches.build] do |f|
         = f.button :submit, 'Generate Matches'
       h3 Current players without matches
-      - @season.each_group do |group, index|
-        h4 Group #{index}
-        ol
+      table.players
+        - @season.each_group do |group, index|
+          tr.group
+            th Group #{index}
           - (group - @round.registrations_with_matches).each do |registration|
-            li = link_to registration, registration.user
+            tr
+              td = link_to player(registration), registration.user
