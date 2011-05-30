@@ -7,7 +7,9 @@ Lilyladder::Application.routes.draw do
   resources :seasons do
     resources :registrations
     resources :rounds do
-      resources :matches
+      resources :matches do
+        resources :games
+      end
     end
   end
 

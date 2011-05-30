@@ -1,4 +1,4 @@
 class MapPool < ActiveRecord::Base
-  belongs_to :map
+  has_many :maps
   belongs_to :season
 end

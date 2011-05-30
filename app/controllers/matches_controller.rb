@@ -12,5 +12,6 @@ class MatchesController < ApplicationController
     @season = Season.find(params[:season_id])
     @round = @season.rounds.find(params[:round_id])
     @match = @round.matches.find(params[:id])
+    @game = Game.new
   end
 end

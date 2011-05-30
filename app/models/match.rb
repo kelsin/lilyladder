@@ -48,4 +48,8 @@ class Match < ActiveRecord::Base
       player.registration.user == user
     end.try(:registration)
   end
+
+  def next_game
+    self.games.size + 1
+  end
 end

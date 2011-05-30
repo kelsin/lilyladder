@@ -1,5 +1,5 @@
 class Map < ActiveRecord::Base
-  has_many :map_pools
+  belongs_to :map_pool
   has_many :seasons, :through => :map_pools
 
   has_many :games

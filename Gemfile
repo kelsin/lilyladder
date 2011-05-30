@@ -15,4 +15,5 @@ group :development, :test do
   gem 'faker'
   gem 'machinist', :require => 'machinist/active_record'
   gem 'capistrano'
+  gem 'awesome_print', :require => 'ap'
 end

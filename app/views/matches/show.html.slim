@@ -10,7 +10,7 @@
     .player = link_to @match.player2, @match.player2.registration.user
   h3 Games
   - if @match.games.empty?
-    p.empty None
+    p.empty No Games Player Yet
   - else
     table.games
       tr
@@ -19,6 +19,13 @@
         th Result
       - @match.games.each do |game|
         tr
-          td = game.positive
+          td = game.position
           td = game.map
           td = game_result(game)
+  - if can_edit_match?(@match)
+    h3 Results for Game #{@match.next_game}
+    = simple_form_for [@season, @round, @match, @game] do |f|
+      = f.input :map_id, :collection => @season.map_pool.maps
+      = f.input :winner_id, :collection => @match.players.sort
+      = f.button :submit, 'Submit Result'
+
