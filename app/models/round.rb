@@ -53,8 +53,8 @@ class Round < ActiveRecord::Base
       group -= self.registrations_with_matches
 
       # Put players with a bye at the top of the group so that they gaurunteed get matches
-      group.sort_by! do |registration|
-        registration.byes
+      group.sort! do |a, b|
+        a.byes <=> b.byes
       end.reverse!
 
       # Group is now sorted, start pairing them as long as we have a pair
