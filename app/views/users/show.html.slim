@@ -1,32 +1,49 @@
 .user id=dom_id(@user)
   h1 = @user
-  h2 Open Matches
-  ul
-    - if @user.open_matches.empty?
-      li None
-    - else
-      - @user.open_matches.each do |match|
-        li = link_to match, [match.round.season, match.round, match]
-  h2 Overall Record
+  h3 Open Matches
+  - if @user.open_matches.empty?
+    p.empty None
+  - else
+    table.matches
+      tr
+        th Season
+        th Round
+        th Opponent
+        th Group
+        th Result
+        th
+      tbody
+        - @user.open_matches.each do |match|
+          tr
+            td = link_to match.round.season, match.round.season
+            td = link_to match.round, [match.round.season, match.round]
+            td = opponent(match, match.registration_for(@user))
+            td = match.group
+            td = result(match, match.registration_for(@user))
+            td = link_to 'Match Page', [match.round.season, match.round, match]
+  h3 Overall Record
   dl
     dt Wins
-    dd #{@user.wins} - #{number_to_percentage @user.win_percent, :precision => 2}
+    dd
+      = @user.wins
+      span  - 
+      = number_to_percentage @user.win_percent, :precision => 2
     dt Losses
     dd = @user.losses
     dt Byes
     dd = @user.byes
-  h2 All Matches
-  ol
+  h3 All Matches
+  table.matches
     - @user.registrations.each do |registration|
-      li
-        = link_to registration.season, registration.season
+      tr.season
+        th colspan="4" = link_to registration.season, registration.season
         - unless registration.matches.empty?
-          table.matches
-            tr
-              th Round
-              th Opponent
-              th Group
-              th Result
+          tr
+            th Round
+            th Opponent
+            th Group
+            th Result
+          tbody
             - registration.matches.sort.each do |match|
               tr
                 td = match.round.position

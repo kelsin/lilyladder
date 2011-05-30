@@ -5,6 +5,10 @@ class Season < ActiveRecord::Base
   has_many :registrations, :dependent => :destroy
   has_many :users, :through => :registrations
 
+  # Maps
+  has_one :map_pool
+  has_many :maps, :through => :map_pool
+
   def to_s
     self.name
   end

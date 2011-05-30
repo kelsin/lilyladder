@@ -10,7 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526005252) do
+ActiveRecord::Schema.define(:version => 20110530034050) do
+
+  create_table "games", :force => true do |t|
+    t.integer  "match_id"
+    t.integer  "winner_id"
+    t.integer  "map_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "map_pools", :force => true do |t|
+    t.integer  "season_id"
+    t.integer  "map_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "maps", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "matches", :force => true do |t|
     t.integer  "round_id"
@@ -39,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110526005252) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "race_id"
   end
 
   create_table "rounds", :force => true do |t|

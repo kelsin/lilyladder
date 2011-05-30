@@ -3,6 +3,7 @@ class Registration < ActiveRecord::Base
 
   belongs_to :season
   belongs_to :user
+  belongs_to :race
   has_many :players
   has_many :matches, :through => :players
   has_many :wins, :foreign_key => 'winner_id', :class_name => 'Match'

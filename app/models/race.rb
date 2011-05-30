@@ -8,8 +8,8 @@ class Race < ActiveRecord::Base
     self.name
   end
 
-  def image_path
-    "/images/races/#{self.name.downcase}.jpg"
+  def image
+    "#{self.name.downcase}.png"
   end
 
   def icon_class

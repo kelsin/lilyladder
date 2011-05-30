@@ -1,7 +1,12 @@
 class Match < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+
   belongs_to :round
   belongs_to :winner, :class_name => 'Registration'
+
   has_many :players, :dependent => :destroy
+  has_many :games, :dependent => :destroy
+
   scope :win, lambda { |player| where(:winner_id => player) }
   scope :loss, lambda { |player| where('winner_id is not null and winner_id != ? and id in (?)', player, player.matches.map(&:id)) }
   scope :in_round, lambda { |round_numbers| includes(:round).where('rounds.position' => round_numbers) }
@@ -22,5 +27,25 @@ class Match < ActiveRecord::Base
 
   def bye?
     self.players.size == 1 and self.winner == self.players.first.registration
+  end
+
+  def player1
+    self.players.sort.first
+  end
+  memoize :player1
+
+  def player2
+    self.players.sort.second
+  end
+  memoize :player2
+
+  def users
+    self.players.sort.map(&:registration).map(&:user)
+  end
+
+  def registration_for(user)
+    self.players.detect do |player|
+      player.registration.user == user
+    end.try(:registration)
   end
 end

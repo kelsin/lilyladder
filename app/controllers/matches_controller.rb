@@ -7,4 +7,10 @@ class MatchesController < ApplicationController
 
     redirect_to season_round_path(@season, @round), :notice => 'Matches generated'
   end
+
+  def show
+    @season = Season.find(params[:season_id])
+    @round = @season.rounds.find(params[:round_id])
+    @match = @round.matches.find(params[:id])
+  end
 end

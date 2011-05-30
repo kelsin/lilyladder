@@ -1,4 +1,5 @@
 #seasons
+  h3 Seasons
   table
     tr
       th Name
@@ -8,6 +9,8 @@
       td = link_to season.name, season_path(season)
       td = pluralize season.rounds.size, 'round'
       td = pluralize season.registrations.size, 'player'
-  = simple_form_for @season do |f|
-    = f.input :name
-    = f.button :submit, 'Create Season'
+  - if admin?
+    h3 Create New Season
+    = simple_form_for @season do |f|
+      = f.input :name
+      = f.button :submit, 'Create Season'

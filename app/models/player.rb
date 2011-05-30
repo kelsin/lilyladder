@@ -14,4 +14,21 @@ class Player < ActiveRecord::Base
   def <=>(other)
     self.registration.user <=> other.registration.user
   end
+
+  def won?
+    self.match.winner == self.registration
+  end
+
+  def lost?
+    self.match.winner and self.match.winner != self.registration
+  end
+
+  def race
+    self.registration.race
+  end
+
+  def classes
+    return 'won' if self.won?
+    return 'lost' if self.lost?
+  end
 end

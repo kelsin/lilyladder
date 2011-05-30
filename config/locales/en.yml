@@ -4,5 +4,5 @@
 en:
   time:
     formats:
-      default: "%b %e %Y, %I:%M %P"
+      default: "%b %e %Y %I:%M%p"
   hello: "Hello world"
