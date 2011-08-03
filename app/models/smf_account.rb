@@ -24,8 +24,14 @@ class SmfAccount < ActiveRecord::Base
   end
 
   def user
-    User.create(user_params)
+    User.create!(user_params)
   rescue
-    User.find(:smf_id => self.id_member)
+    User.where(:smf_id => self.id_member).first.tap do |u|
+      u.update_attributes(user_params) if u
+    end
+  end
+
+  def readonly?
+    true
   end
 end

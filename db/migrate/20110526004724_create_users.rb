@@ -8,6 +8,12 @@ class CreateUsers < ActiveRecord::Migration
       t.references :race
       t.timestamps
     end
+
+    change_table :users do |t|
+      t.index :name
+      t.index :email
+      t.index :smf_id
+    end
   end
 
   def self.down

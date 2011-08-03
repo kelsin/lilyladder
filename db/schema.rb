@@ -94,4 +94,8 @@ ActiveRecord::Schema.define(:version => 20110803021122) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["name"], :name => "index_users_on_name"
+  add_index "users", ["smf_id"], :name => "index_users_on_smf_id"
+
 end
