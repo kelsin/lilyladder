@@ -2,6 +2,9 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string :name
+      t.string :email
+      t.integer :smf_id
+      t.boolean :admin
       t.references :race
       t.timestamps
     end

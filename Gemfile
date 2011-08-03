@@ -7,6 +7,7 @@ gem 'acts_as_list'
 
 gem 'slim'
 gem 'simple_form'
+gem 'mysql'
 
 group :development, :test do
   gem 'sqlite3'
