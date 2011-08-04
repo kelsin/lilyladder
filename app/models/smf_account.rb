@@ -15,7 +15,7 @@ class SmfAccount < ActiveRecord::Base
   set_primary_key :id_member
 
   def self.authenticate(login, password)
-    self.where(:member_name => login, :passwd => Digest::SHA1.hexdigest("#{login}#{password}")).first
+    self.where(:member_name => login, :passwd => Digest::SHA1.hexdigest("#{login.downcase}#{password}")).first
   end
 
   def user_params
