@@ -8,12 +8,20 @@ gem 'slim'
 gem 'simple_form'
 gem 'mysql'
 
+gem 'jammit'
+
 group :development, :test do
   gem 'sqlite3'
+
   gem 'rspec-rails'
-  gem 'webrat'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
   gem 'faker'
-  gem 'machinist', :require => 'machinist/active_record'
-  gem 'capistrano'
+  gem 'factory_girl_rails'
+
   gem 'awesome_print', :require => 'ap'
+
+  gem 'guard-jammit'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
 end
