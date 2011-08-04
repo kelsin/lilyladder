@@ -1,0 +1,10 @@
+stylesheets:
+  lilyladder:
+    - public/stylesheets/reset.css
+    - public/stylesheets/application.css
+
+javascripts:
+  lilyladder:
+    - public/javascripts/jquery.js
+    - public/javascripts/jquery_ujs.js
+    - public/javascripts/application.js
