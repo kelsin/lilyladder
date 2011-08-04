@@ -1,1 +1,1 @@
-rvm use 1.8.7@lilyladder --create
+rvm use 1.9.2@lilyladder --create

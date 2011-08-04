@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Registration do
   context "with 4 registrations" do
     before do
-      @reg1 = Registration.make_unsaved
-      @reg2 = Registration.make_unsaved
-      @reg3 = Registration.make_unsaved
-      @reg4 = Registration.make_unsaved
+      @reg1 = FactoryGirl.build(:registration)
+      @reg2 = FactoryGirl.build(:registration)
+      @reg3 = FactoryGirl.build(:registration)
+      @reg4 = FactoryGirl.build(:registration)
 
       @reg1.stub(:wins) { 1 }
       @reg2.stub(:wins) { 3 }

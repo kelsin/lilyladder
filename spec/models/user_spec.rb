@@ -1,26 +1,15 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.make_unsaved }
-  subject { @user }
+  let(:user) { FactoryGirl.build(:user) }
+  subject { user }
 
-  its(:to_s) { should eq(@user.name) }
-
-  context "with some registrations" do
-    before do
-      @reg1 = Registration.make_unsaved
-      @reg1.stub!(:wins) { 5 }
-      @reg1.stub!(:losses) { 10 }
-
-      @reg2 = Registration.make_unsaved
-      @reg2.stub!(:wins) { 2 }
-      @reg2.stub!(:losses) { 1 }
-
-      @user.registrations << @reg1
-      @user.registrations << @reg2
+  it "should sort correctly by name" do
+    users = FactoryGirl.build_list(:user, 25)
+    users.sort.should == users.sort do |a,b|
+      a.name <=> b.name
     end
-
-    its(:wins) { should eq(7) }
-    its(:losses) { should eq(11) }
   end
+
+  its(:to_s) { should eq(user.name) }
 end

@@ -7,9 +7,6 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# Blueprints
-require File.expand_path(File.dirname(__FILE__) + "/blueprints")
-
 RSpec.configure do |config|
   # == Mock Framework
   #
@@ -22,16 +19,6 @@ RSpec.configure do |config|
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.before(:all)  { Sham.reset(:before_all)  }
-  config.before(:each) do
-    Race.create(:name => 'Zerg')
-    Race.create(:name => 'Protoss')
-    Race.create(:name => 'Terran')
-    Race.create(:name => 'Random')
-
-    Sham.reset(:before_each)
-  end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
