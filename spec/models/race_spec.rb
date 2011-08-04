@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Race do
-  let(:race) { Race.where(:name => 'Zerg').first }
+  let(:race) { FactoryGirl.build(:race) }
   subject { race }
 
   its(:to_s) { should eq(race.name) }

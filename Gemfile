@@ -21,7 +21,7 @@ group :development, :test do
 
   gem 'awesome_print', :require => 'ap'
 
-  gem 'guard-jammit'
+  gem 'guard-jammit', :path => '~/src/guard-jammit'
   gem 'guard-rspec'
   gem 'guard-cucumber'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i

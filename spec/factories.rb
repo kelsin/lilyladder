@@ -6,11 +6,11 @@ FactoryGirl.define do
   end
 
   sequence :race do |n|
-    Race.where(:name => ['Random','Zerg','Protoss','Terran'][n % 4]).first
+    ['Random','Zerg','Protoss','Terran'][n % 4]
   end
 
-  sequence :position do |n|
-    n
+  factory :race do
+    name { Factory.next :race }
   end
 
   factory :smf_account do
@@ -30,17 +30,17 @@ FactoryGirl.define do
 
   factory :user do
     name { Faker::Internet.user_name }
-    race
+    association :race
   end
 
   factory :registration do
     association :season
     association :user
-    race
+    association :race
   end
 
   factory :round do
-    position
+    sequence(:position) {|n| n}
     starts_at { Time.now }
     ends_at { Time.now + 1.week }
     association :season
