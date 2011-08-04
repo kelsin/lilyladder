@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20110803021122) do
     t.datetime "updated_at"
   end
 
+  create_table "smf2rc4_members", :primary_key => "id_member", :force => true do |t|
+    t.string  "member_name"
+    t.string  "email_address"
+    t.string  "passwd"
+    t.integer "id_group"
+  end
+
   create_table "smf_accounts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
