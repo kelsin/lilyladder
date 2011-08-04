@@ -1,11 +1,9 @@
 require 'spec_helper'
 
 describe Registration do
-  let(:race) { FactoryGirl.build(:race) }
-
   context "with 4 registrations" do
     before do
-      @reg1, @reg2, @reg3, @reg4 = FactoryGirl.build_list(:registration, 4, :race => race)
+      @reg1, @reg2, @reg3, @reg4 = FactoryGirl.build_list(:registration, 4)
 
       @reg1.stub(:wins) { 1 }
       @reg2.stub(:wins) { 3 }

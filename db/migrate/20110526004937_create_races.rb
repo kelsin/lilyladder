@@ -4,11 +4,6 @@ class CreateRaces < ActiveRecord::Migration
       t.string :name
       t.timestamps
     end
-
-    Race.create(:name => 'Zerg')
-    Race.create(:name => 'Protoss')
-    Race.create(:name => 'Terran')
-    Race.create(:name => 'Random')
   end
 
   def self.down

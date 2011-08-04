@@ -35,7 +35,8 @@
     - unless @season.eligible_users.empty?
       h3 Register User
       = simple_form_for [@season, @season.registrations.build] do |f|
-        = f.input :user_id, :collection => @seaon.eligible_users, :include_blank => false
+        = f.input :user_id, :collection => @season.eligible_users, :include_blank => false
+        = f.input :race_id, :collection => Race.all, :include_blank => false
         = f.button :submit, 'Register User'
     h3 Add Round
     = simple_form_for [@season, @season.rounds.build] do |f|
