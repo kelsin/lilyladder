@@ -24,8 +24,8 @@ group :development, :test do
   gem 'guard-jammit', :path => '~/src/guard-jammit'
   gem 'guard-rspec'
   gem 'guard-cucumber'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'growl', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
+  gem 'growl', :require => false
   gem 'launchy', '= 0.4.0'
   gem 'prawn', '= 0.8.4'
   gem 'syntax'
