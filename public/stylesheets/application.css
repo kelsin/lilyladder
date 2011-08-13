@@ -13,9 +13,12 @@ dt { clear: left; }
 p { background-color: #222; padding: 6px 24px 6px 6px; }
 
 /* Headers */
-h1 { font-size: 3em; font-weight: bold; padding: 6px 24px 6px 6px; }
-h2 { font-size: 2em; padding: 6px 24px 6px 6px; }
-h3 { font-size: 1.8em; font-weight: bold; border-bottom: 1px solid #a00; padding: 16px 24px 6px 6px; }
+header { padding: 6px 24px 6px 0; }
+h1 { font-size: 3em; font-weight: bold; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.8em; font-weight: bold; border-bottom: 1px solid #a00; padding: 10px 0 0 0; }
+
+nav { padding: 6px 24px 6px 0; }
 
 .user h1 { font-size: 2.6em; font-weight: normal; }
 
@@ -58,4 +61,5 @@ span.race { display: inline-block; padding: 1px 0 2px 23px; }
 .match .players .player { font-size: 30px; line-height: 125px; float: left; }
 .match .players .vs { font-size: 40px; line-height: 125px; color: #666; float: left; margin: 0 20px; }
 
-
+/* Account Page */
+img#race_preference_image { float: left; margin: 0 10px 10px 0; }

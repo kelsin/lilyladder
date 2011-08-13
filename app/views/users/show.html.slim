@@ -1,5 +1,7 @@
 .user id=dom_id(@user)
   h1 = @user
+  - if current_user == @user
+    p This is your public profile page. View your #{link_to 'account page', account_path} to edit your preferences.
   h3 Open Matches
   - if @user.open_matches.empty?
     p.empty None

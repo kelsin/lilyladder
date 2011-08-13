@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
-  belongs_to :match
-  belongs_to :registration
-  belongs_to :race
+  belongs_to :match, :inverse_of => :players
+  belongs_to :registration, :inverse_of => :players
+  belongs_to :race, :inverse_of => :players
 
   def name
     self.registration.name

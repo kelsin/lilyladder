@@ -1,0 +1,19 @@
+h1 #{@season} Replays
+ul
+  table.matches
+    tr
+      th
+      th Player 1
+      th
+      th Player 2
+      th Winner
+      th
+    tbody
+      - @matches.each do |match|
+        tr
+          td = match.round
+          td = link_to player1(match), [match.round.season, match.round, match]
+          td vs
+          td = link_to player2(match), [match.round.season, match.round, match]
+          td = winner(match)
+          td = link_to 'Replay', '#'

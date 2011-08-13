@@ -1,10 +1,10 @@
 class Registration < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
-  belongs_to :season
-  belongs_to :user
-  belongs_to :race
-  has_many :players
+  belongs_to :season, :inverse_of => :registrations
+  belongs_to :user, :inverse_of => :registrations
+  belongs_to :race, :inverse_of => :registrations
+  has_many :players, :inverse_of => :registration
   has_many :matches, :through => :players
   has_many :wins, :foreign_key => 'winner_id', :class_name => 'Match'
 

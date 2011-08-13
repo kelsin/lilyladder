@@ -33,7 +33,8 @@ class SmfAccount < ActiveRecord::Base
     end
   end
 
+  # TODO Change
   def readonly?
-    true
+    false
   end
 end

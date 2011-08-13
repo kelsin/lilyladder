@@ -1,6 +1,7 @@
 class Race < ActiveRecord::Base
   has_many :users
-  has_many :players
+  has_many :players, :inverse_of => :race
+  has_many :registrations, :inverse_of => :race
 
   validates_uniqueness_of :name
 

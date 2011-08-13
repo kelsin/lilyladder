@@ -10,8 +10,8 @@
       - @season.rounds.each do |round|
         tr
           td = link_to round, [@season, round]
-          td = l round.starts_at
-          td = l round.ends_at
+          td = l round.starts_at if round.starts_at
+          td = l round.ends_at if round.ends_at
   h3 Current Groups
   table.players
     - @season.each_group do |group, number|

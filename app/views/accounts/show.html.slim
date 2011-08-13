@@ -1,3 +1,35 @@
 .user id=dom_id(current_user)
+  = image_tag current_user.race.try(:image), :id => 'race_preference_image'
   h1 = current_user
-  h2 = current_user.race
+  - if current_user.admin?
+    p.admin Admin
+  .race_preference
+    p.race Preferred Race: #{current_user.race}
+    p.edit style="display: none;" = link_to 'Edit', '#', :id => 'edit_account_race_preference'
+    = simple_form_for current_user, :url => account_path, :as => 'account' do |f|
+      = f.input :race_id, :label => 'Preferred Race', :as => :select, :collection => Race.all, :include_blank => !current_user.race
+      = link_to 'Cancel', '#', :id => 'cancel_account_race_preference'
+  dl.stats
+    dt Wins
+    dd #{current_user.wins} - #{current_user.win_percent}%
+    dt Loses
+    dd = current_user.losses
+    dt Byes
+    dd = current_user.byes
+  - unless current_user.open_matches.empty?
+    h2 Open Matches
+    table.matches
+      tr
+        th Player 1
+        th vs
+        th Player 2
+        th Winner
+        th
+      tbody
+        - current_user.open_matches.each do |match|
+          tr
+            td = link_to player1(match), [match.round.season, match.round, match]
+            td vs
+            td = link_to player2(match), [match.round.season, match.round, match]
+            td = winner(match)
+            td = link_to 'Match Page', [match.round.season, match.round, match]

@@ -1,8 +1,8 @@
 class Round < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
-  belongs_to :season
-  has_many :matches, :dependent => :destroy
+  belongs_to :season, :inverse_of => :rounds
+  has_many :matches, :dependent => :destroy, :inverse_of => :round
   acts_as_list :scope => :season
 
   def to_s

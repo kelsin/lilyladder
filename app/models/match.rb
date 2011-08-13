@@ -1,11 +1,11 @@
 class Match < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
-  belongs_to :round
+  belongs_to :round, :inverse_of => :matches
   belongs_to :winner, :class_name => 'Registration'
 
-  has_many :players, :dependent => :destroy
-  has_many :games, :dependent => :destroy
+  has_many :players, :dependent => :destroy, :inverse_of => :match
+  has_many :games, :dependent => :destroy, :inverse_of => :match
 
   scope :win, lambda { |player| where(:winner_id => player) }
   scope :loss, lambda { |player| where('winner_id is not null and winner_id != ? and id in (?)', player, player.matches.map(&:id)) }

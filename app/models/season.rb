@@ -1,7 +1,7 @@
 class Season < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
-  has_many :rounds, :order => 'position'
+  has_many :rounds, :order => 'position', :inverse_of => :season
   has_many :registrations, :dependent => :destroy
   has_many :users, :through => :registrations
 
