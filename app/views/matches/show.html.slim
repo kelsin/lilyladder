@@ -8,6 +8,9 @@
     .vs vs
     = image_tag @match.player2.registration.race.image
     .player = link_to @match.player2, @match.player2.registration.user
+  - if can_edit_match?(@match)
+    h3 Contact Info
+    p #{bnet_id(@match.user1)} vs #{bnet_id(@match.user2)}
   h3 Games
   - if @match.games.empty?
     p.empty No Games Player Yet

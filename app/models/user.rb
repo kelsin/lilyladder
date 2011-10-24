@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   has_many :seasons, :through => :registrations
 
   validates_uniqueness_of :name
+  validates_presence_of :bnet_name, :allow_nil => true
+  validates_presence_of :bnet_code, :allow_nil => true
+
+  def bnet_id
+    "#{self.bnet_name}.#{self.bnet_code}" if self.bnet_name.present? and self.bnet_code.present?
+  end
 
   def to_s
     self.name

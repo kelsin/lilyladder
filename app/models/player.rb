@@ -11,6 +11,10 @@ class Player < ActiveRecord::Base
     self.name
   end
 
+  def user
+    self.registration.user
+  end
+
   def <=>(other)
     self.registration.user <=> other.registration.user
   end

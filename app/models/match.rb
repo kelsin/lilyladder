@@ -43,6 +43,22 @@ class Match < ActiveRecord::Base
     self.players.sort.map(&:registration).map(&:user)
   end
 
+  def user1
+    self.player1.user
+  end
+
+  def user2
+    self.player2.user
+  end
+
+  def opponent(user)
+    if user1 == user
+      player2
+    elsif user2 == user
+      player1
+    end
+  end
+
   def registration_for(user)
     self.players.detect do |player|
       player.registration.user == user

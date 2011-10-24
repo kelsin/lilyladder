@@ -3,12 +3,17 @@
   h1 = current_user
   - if current_user.admin?
     p.admin Admin
-  .race_preference
+  .preferences
+    p.bnet_name Battle.net name: #{current_user.bnet_name || content_tag(:em, 'Not Set')}
+    p.bnet_code Battle.net character code: #{current_user.bnet_code || content_tag(:em, 'Not Set')}
     p.race Preferred Race: #{current_user.race}
     p.edit style="display: none;" = link_to 'Edit', '#', :id => 'edit_account_race_preference'
     = simple_form_for current_user, :url => account_path, :as => 'account' do |f|
+      = f.input :bnet_name, :label => 'Battle.net Name'
+      = f.input :bnet_code, :label => 'Battle.net Character Code'
       = f.input :race_id, :label => 'Preferred Race', :as => :select, :collection => Race.all, :include_blank => !current_user.race
-      = link_to 'Cancel', '#', :id => 'cancel_account_race_preference'
+      = f.button :submit, 'Save'
+      = link_to 'Cancel', '#', :id => 'cancel_account_preferences'
   dl.stats
     dt Wins
     dd #{current_user.wins} - #{current_user.win_percent}%
@@ -20,16 +25,14 @@
     h2 Open Matches
     table.matches
       tr
-        th Player 1
-        th vs
-        th Player 2
+        th Opponent
+        th B.net ID
         th Winner
         th
       tbody
         - current_user.open_matches.each do |match|
           tr
-            td = link_to player1(match), [match.round.season, match.round, match]
-            td vs
-            td = link_to player2(match), [match.round.season, match.round, match]
+            td = link_to match.opponent(current_user), match.opponent(current_user).user
+            td = bnet_id(match.opponent(current_user).user)
             td = winner(match)
             td = link_to 'Match Page', [match.round.season, match.round, match]
