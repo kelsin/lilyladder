@@ -1,0 +1,2 @@
+class MapPoolsController < ApplicationController
+end

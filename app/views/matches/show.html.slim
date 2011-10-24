@@ -25,7 +25,7 @@
   - if can_edit_match?(@match)
     h3 Results for Game #{@match.next_game}
     = simple_form_for [@season, @round, @match, @game] do |f|
-      = f.input :map_id, :collection => @season.map_pool.try(:maps)
+      = f.input :map_id, :as => :select, :collection => @season.map_pool.try(:maps)
       = f.input :winner_id, :collection => @match.players.sort
       = f.button :submit, 'Submit Result'
 

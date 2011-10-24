@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803021122) do
+ActiveRecord::Schema.define(:version => 20111024191149) do
 
   create_table "games", :force => true do |t|
     t.integer  "match_id"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20110803021122) do
     t.integer  "race_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bnet_name"
+    t.string   "bnet_code"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

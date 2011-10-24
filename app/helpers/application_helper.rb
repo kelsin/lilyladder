@@ -1,6 +1,6 @@
 module ApplicationHelper
   def admin?
-    true
+    current_user and current_user.admin?
   end
 
   def can_edit_match?(match)

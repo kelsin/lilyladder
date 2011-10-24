@@ -1,0 +1,2 @@
+module MapPoolsHelper
+end

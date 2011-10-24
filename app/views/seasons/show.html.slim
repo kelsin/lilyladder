@@ -1,5 +1,22 @@
 .season id=dom_id(@season)
   h1 = @season.name
+  h3 Map Pool
+  - if @season.map_pool and !@season.map_pool.maps.empty?
+    table.maps
+      tr
+        th Map Name
+        - if admin?
+          th
+      - @season.map_pool.maps.each do |map|
+        tr
+          td = map.name
+          - if admin?
+            td = link_to 'Remove', season_map_pool_map_path(@season, map), :method => :delete
+  - if admin?
+    h4 Add Map
+    = simple_form_for [@season, :map_pool, Map.new] do |f|
+      = f.input :name
+      = f.button :submit
   h3 Rounds
   table.rounds
     tr

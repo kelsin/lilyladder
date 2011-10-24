@@ -6,9 +6,10 @@
       th Rounds
       th Players
     - @seasons.each do |season|
-      td = link_to season.name, season_path(season)
-      td = pluralize season.rounds.size, 'round'
-      td = pluralize season.registrations.size, 'player'
+      tr
+        td = link_to season.name, season_path(season)
+        td = pluralize season.rounds.size, 'round'
+        td = pluralize season.registrations.size, 'player'
   - if admin?
     h3 Create New Season
     = simple_form_for @season do |f|
