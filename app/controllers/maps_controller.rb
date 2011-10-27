@@ -9,6 +9,9 @@ class MapsController < ApplicationController
     if @map.save
       redirect_to season_path(@season)
     else
+      @map_pool.maps.delete(@map)
+      @map_pool.destroy if @map_pool.maps.empty?
+      flash.now[:alert] = @map.errors.full_messages.join(' ')
       render :template => 'seasons/show'
     end
   end

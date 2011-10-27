@@ -1,6 +1,10 @@
 .match id=dom_id(@match)
   h1 = link_to @season, @season
   h2 = link_to @round, [@season, @round]
+  h2 Best of #{@match.best_of}
+  - if @match.complete?
+    h3 Winner
+    p = @match.winner
   h3 Players
   .players
     = image_tag @match.player1.registration.race.image
@@ -25,10 +29,9 @@
           td = game.position
           td = game.map
           td = game_result(game)
-  - if can_edit_match?(@match)
+  - if !@match.complete? and can_edit_match?(@match)
     h3 Results for Game #{@match.next_game}
     = simple_form_for [@season, @round, @match, @game] do |f|
       = f.input :map_id, :as => :select, :collection => @season.map_pool.try(:maps)
-      = f.input :winner_id, :collection => @match.players.sort
+      = f.input :winner_id, :collection => @match.registrations.sort
       = f.button :submit, 'Submit Result'
-

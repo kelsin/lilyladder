@@ -16,4 +16,10 @@ html
             li = link_to 'Sign Out', signout_path
           - else
             li = link_to 'Sign In', signin_path
+      - if alert or notice
+        .flash
+          - if alert
+            .alert = alert
+          - if notice
+            .notice = notice
       = yield

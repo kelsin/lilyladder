@@ -4,6 +4,8 @@ class Map < ActiveRecord::Base
 
   has_many :games
 
+  validates :name, :presence => true, :uniqueness => true
+
   def to_s
     self.name
   end

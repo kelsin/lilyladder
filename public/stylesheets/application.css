@@ -4,6 +4,11 @@ em { font-style: italic; color: #999; font-size: 0.8em; }
 a { text-decoration: none; color: #f90; }
 a:hover { color: #fb0; }
 
+/* Flash */
+.flash { margin: 1em auto; }
+.flash div { padding: 0.7em; border-radius: 0.5em; }
+.flash .alert { background-color: #a00; color: #fff; }
+
 dl { overflow: hidden; }
 dl dt:nth-of-type(2n), dl dd:nth-of-type(2n) { background-color: #333; }
 dl dt:nth-of-type(2n+1), dl dd:nth-of-type(2n+1) { background-color: #222; }

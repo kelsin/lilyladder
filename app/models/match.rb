@@ -5,6 +5,7 @@ class Match < ActiveRecord::Base
   belongs_to :winner, :class_name => 'Registration'
 
   has_many :players, :dependent => :destroy, :inverse_of => :match
+  has_many :registrations, :through => :players
   has_many :games, :dependent => :destroy, :inverse_of => :match
 
   scope :win, lambda { |player| where(:winner_id => player) }
@@ -12,6 +13,8 @@ class Match < ActiveRecord::Base
   scope :in_round, lambda { |round_numbers| includes(:round).where('rounds.position' => round_numbers) }
   scope :open, where(:reported_at => nil)
   scope :finished, where('reported_at != ?', nil)
+
+  validates :best_of, :presence => true, :inclusion => { :in => [1,3,5,7,9] }
 
   def to_s
     self.players.sort.map(&:to_s).join ' vs '
@@ -67,5 +70,30 @@ class Match < ActiveRecord::Base
 
   def next_game
     self.games.size + 1
+  end
+
+  def complete?
+    !!self.winner
+  end
+
+  def wins_per_player
+    self.games.inject({}) do |wins, game|
+      wins[game.winner] ||= 0
+      wins[game.winner] += 1
+      wins
+    end
+  end
+
+  def games_needed_for_win
+    (self.best_of / 2.0).ceil
+  end
+
+  def check_for_completeness!
+    self.wins_per_player.each do |reg, wins|
+      if wins >= self.games_needed_for_win
+        self.update_attribute(:winner_id, reg.id)
+        break
+      end
+    end
   end
 end
