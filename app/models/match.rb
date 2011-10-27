@@ -92,8 +92,9 @@ class Match < ActiveRecord::Base
     self.wins_per_player.each do |reg, wins|
       if wins >= self.games_needed_for_win
         self.update_attribute(:winner_id, reg.id)
-        break
+        return
       end
     end
+    self.update_attribute(:winner_id, nil)
   end
 end

@@ -24,11 +24,15 @@
         th #
         th Map
         th Result
+        - if admin?
+          th
       - @match.games.each do |game|
         tr
           td = game.position
           td = game.map
           td = game_result(game)
+          - if admin?
+            td = link_to 'Delete', season_round_match_game_path(@season, @round, @match, game), :method => :delete
   - if !@match.complete? and can_edit_match?(@match)
     h3 Results for Game #{@match.next_game}
     = simple_form_for [@season, @round, @match, @game] do |f|

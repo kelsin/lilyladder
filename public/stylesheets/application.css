@@ -6,8 +6,9 @@ a:hover { color: #fb0; }
 
 /* Flash */
 .flash { margin: 1em auto; }
-.flash div { padding: 0.7em; border-radius: 0.5em; }
-.flash .alert { background-color: #a00; color: #fff; }
+.flash div { padding: 0.7em; border-radius: 0.5em; color: #fff; }
+.flash .alert { background-color: #a00; }
+.flash .notice { background-color: #f90; }
 
 dl { overflow: hidden; }
 dl dt:nth-of-type(2n), dl dd:nth-of-type(2n) { background-color: #333; }
