@@ -8,6 +8,8 @@ gem 'slim'
 gem 'simple_form'
 gem 'mysql'
 
+gem 'cancan'
+
 gem 'jammit'
 
 group :development, :test do
