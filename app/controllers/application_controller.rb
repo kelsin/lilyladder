@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  check_authorization
+
   before_filter :authenticate!
 
   helper_method :current_user

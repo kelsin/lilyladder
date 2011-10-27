@@ -1,4 +1,6 @@
 class RoundsController < ApplicationController
+  authorize_resource
+
   def create
     @season = Season.find(params[:season_id])
     @round = @season.rounds.create

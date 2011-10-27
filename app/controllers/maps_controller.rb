@@ -1,4 +1,6 @@
 class MapsController < ApplicationController
+  authorize_resource
+
   def create
     @season = Season.includes(:rounds).find(params[:season_id])
 

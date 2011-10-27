@@ -1,4 +1,6 @@
 class SeasonsController < ApplicationController
+  authorize_resource
+
   def index
     @seasons = Season.includes(:rounds).all
     @season = Season.new

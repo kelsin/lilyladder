@@ -12,7 +12,7 @@
     .vs vs
     = image_tag @match.player2.registration.race.image
     .player = link_to @match.player2, @match.player2.registration.user
-  - if can_edit_match?(@match)
+  - if can?(:manage, @match)
     h3 Contact Info
     p #{bnet_id(@match.user1)} vs #{bnet_id(@match.user2)}
   h3 Games
@@ -33,7 +33,7 @@
           td = game_result(game)
           - if admin?
             td = link_to 'Delete', season_round_match_game_path(@season, @round, @match, game), :method => :delete
-  - if !@match.complete? and can_edit_match?(@match)
+  - if !@match.complete? and can?(:manage, Game)
     h3 Results for Game #{@match.next_game}
     = simple_form_for [@season, @round, @match, @game] do |f|
       = f.input :map_id, :as => :select, :collection => @season.map_pool.try(:maps)
