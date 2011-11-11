@@ -1,5 +1,6 @@
 .user id=dom_id(current_user)
-  = image_tag current_user.race.try(:image), :id => 'race_preference_image'
+  - if current_user.race.try(:image)
+    = image_tag current_user.race.try(:image), :id => 'race_preference_image'
   h1 = current_user
   - if current_user.admin?
     p.admin Admin
