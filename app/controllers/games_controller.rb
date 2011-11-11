@@ -14,7 +14,10 @@ class GamesController < ApplicationController
       @match.check_for_completeness!
       redirect_to [@season, @round, @match], :notice => 'Game result submitted'
     else
-      render :controller => 'matches', :action => 'show', :alert => 'Error saving game result'
+      @game.match = nil
+      @match.games -= [@game]
+      flash.now[:alert] = 'Error saving game result'
+      render :template => 'matches/show'
     end
   end
 

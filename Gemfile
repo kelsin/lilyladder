@@ -12,6 +12,9 @@ gem 'cancan'
 
 gem 'jammit'
 
+gem 'carrierwave'
+gem 'fog'
+
 group :development, :test do
   gem 'sqlite3'
 

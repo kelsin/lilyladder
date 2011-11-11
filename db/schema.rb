@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027021902) do
+ActiveRecord::Schema.define(:version => 20111105185031) do
 
   create_table "games", :force => true do |t|
     t.integer  "match_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111027021902) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "replay"
   end
 
   create_table "map_pools", :force => true do |t|

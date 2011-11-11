@@ -23,6 +23,7 @@
       tr
         th #
         th Map
+        th Replay
         th Result
         - if admin?
           th
@@ -30,12 +31,14 @@
         tr
           td = game.position
           td = game.map
+          td = link_to 'replay', game.replay.url if game.replay.present?
           td = game_result(game)
           - if admin?
             td = link_to 'Delete', season_round_match_game_path(@season, @round, @match, game), :method => :delete
   - if !@match.complete? and can?(:manage, Game)
     h3 Results for Game #{@match.next_game}
-    = simple_form_for [@season, @round, @match, @game] do |f|
+    = simple_form_for [@season, @round, @match, @game], :html => { :enctype => 'multipart/form-data' } do |f|
       = f.input :map_id, :as => :select, :collection => @season.map_pool.try(:maps)
       = f.input :winner_id, :collection => @match.registrations.sort
+      = f.input :replay
       = f.button :submit, 'Submit Result'
